@@ -1,12 +1,17 @@
 package model;
 
-public class LDate {
+import java.io.Serializable;
+import java.util.Calendar;
+
+import org.apache.commons.lang3.StringUtils;
+
+@SuppressWarnings("serial")
+public class LDate implements Serializable, Cloneable {
 	private final int year;
 	private final int month;
 	private final int day;
 
 	private LDate(int year, int month, int day) {
-		super();
 		this.year = year;
 		this.month = month;
 		this.day = day;
@@ -22,6 +27,7 @@ public class LDate {
 			throw new IllegalArgumentException("the length is illegal: "
 					+ value.length());
 		}
+		
 		int year;
 		int month;
 		int day;
@@ -34,6 +40,52 @@ public class LDate {
 					"the value is illegal: " + value, e);
 		}
 		return new LDate(year, month, day);
+	}
+
+	public static LDate get(java.util.Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return get(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1,
+				cal.get(Calendar.DAY_OF_MONTH));
+	}
+
+	// TODO 不要かも
+	public java.sql.Date getSQLDate() {
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.set(year, month - 1, day);
+
+		return new java.sql.Date(cal.getTime().getTime());
+	}
+
+	public Integer getDaysCount(LDate date) {
+
+		LDate compared;
+		try {
+			compared = (LDate) date.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new IllegalArgumentException();
+		}
+
+		if (this.equals(compared)) {
+			return 0;
+		}
+
+		boolean isGtArg = this.gt(compared);
+		for (int i = 0;; i++) {
+			compared = compared.addDay(isGtArg ? 1 : -1);
+			if (this.equals(compared)) {
+				return i;
+			}
+		}
+	}
+
+	public String encode() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(year);
+		builder.append(StringUtils.leftPad(String.valueOf(month), 2, "0"));
+		builder.append(StringUtils.leftPad(String.valueOf(day), 2, "0"));
+		return builder.toString();
 	}
 
 	public int getYear() {
@@ -50,7 +102,14 @@ public class LDate {
 
 	public LDate addDay(int i) {
 		// TODO 異常値を受け取った際の挙動．
-		return LDate.get(year, month, (day + i));
+		// TODO java.util.Calndar を使わないようにする
+		Calendar cal = Calendar.getInstance();
+		cal.clear();
+		cal.set(year, month, day);
+		cal.add(Calendar.DAY_OF_MONTH, i);
+
+		return new LDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
+				cal.get(Calendar.DAY_OF_MONTH));
 	}
 
 	@Override
@@ -79,6 +138,24 @@ public class LDate {
 		if (year != other.year)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return encode();
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return new LDate(year, month, day);
+	}
+	
+	public LDate getClone(){
+		try {
+			return (LDate) this.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
 	}
 
 	/**

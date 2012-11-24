@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 /**
  * @author murakamitakuya
  *
+ *TODO 現状では，銀行勘定のみに使っている．
  */
 public abstract class Record {
 	private BigDecimal amount;

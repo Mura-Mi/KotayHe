@@ -18,9 +18,9 @@ public class ConnectionSupplier {
 
 	static {
 		try {
-			Class.forName("org.postgresql.Driver");
-			String url = "jdbc:postgresql:KotayHe";
-			CONNECTION = DriverManager.getConnection(url, "takuya", "takuya");
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/kotayHe";
+			CONNECTION = DriverManager.getConnection(url,"root","harari0027");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

@@ -3,12 +3,12 @@
  */
 package entity;
 
-import entity.base.KotayHeBase;
+import entity.base.KotayHeUserBase;
 
 /**
  * @author murakamitakuya
  *
  */
-public class KotayHeUser extends KotayHeBase {
+public class KotayHeUser extends KotayHeUserBase {
 
 }

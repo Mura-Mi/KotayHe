@@ -7,32 +7,32 @@ package model;
  * @author murakamitakuya
  * 
  */
-public enum InOut {
+public enum InOut  {
 	/**
 	 * Income(0)
 	 */
-	IN(0),
+	IN("i"),
 	/**
 	 * outgoing(1)
 	 */
-	OUT(1);
+	OUT("o");
 
-	private int dbValue;
+	private String dbValue;
 
-	private InOut(int dbValue) {
+	private InOut(String dbValue) {
 		this.dbValue = dbValue;
 	}
 	
-	public static InOut getByDBValue(int i){
+	public static InOut getByDBValue(String i){
 		for(InOut e:values()){
 			if(i == e.getDBValue()){
 				return e;
 			}
 		}
-		throw new IllegalArgumentException("input must be 0 or 1.");
+		throw new IllegalArgumentException("input must be \"i\" or \"o\".");
 	}
 	
-	public int getDBValue(){
+	public String getDBValue(){
 		return this.dbValue;
 	}
 }
