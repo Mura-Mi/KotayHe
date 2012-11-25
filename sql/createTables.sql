@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS kotayHe_user	;
+﻿DROP TABLE IF EXISTS kotayHe_user;
 DROP TABLE IF EXISTS cash_flow;
 DROP TABLE IF EXISTS pay_recieve_type;
 -- to initialize, drop the tables.
