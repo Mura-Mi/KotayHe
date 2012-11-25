@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entity">
+    <class name="dao.row.CashFlowDBRow" table="CASH_FLOW" lazy="false">
+        <id name="id" type="long" unsaved-value="null">
+            <column name="id" sql-type="INTEGER" not-null="true"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="amount"/>
+        <property name="inOut" type="string">
+            <column name="in_out"/>
+        </property>
+        <property name="date" type="date"/>
+        <property name="categoryId" type="long"/>
+        <property name="description" type="string"/>
+        <property name="journalId" type="long"/>
+    
+    </class>
+    
+
+</hibernate-mapping>
