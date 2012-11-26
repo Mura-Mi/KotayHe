@@ -1,25 +1,38 @@
-﻿DROP TABLE IF EXISTS kotayHe_user;
-DROP TABLE IF EXISTS cash_flow;
-DROP TABLE IF EXISTS pay_recieve_type;
+DROP TABLE kotayHe_user;
+DROP TABLE cash_flow;
+DROP TABLE cash_flow_category;
+DROP TABLE journal;
 -- to initialize, drop the tables.
 
 
-create table kotayhe_user(
+CREATE TABLE kotayhe_user(
     id INTEGER,
     name VARCHAR(50),
     pass INTEGER,
     PRIMARY KEY (id)
 );
 
-create table cash_flow (
+CREATE TABLE cash_flow (
     id INTEGER,
     amount DECIMAL,
-    pay_recieve INTEGER,
+    in_out CHAR(1),
+    date DATE,
+    categoryId INTEGER,
+    description VARCHAR(200),
+    journalId INTEGER,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE pay_recieve_type (
+CREATE TABLE cash_flow_category (
     id INTEGER,
-    description CHAR(4),
+    description VARCHAR(50),
+    parent INTEGER,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE journal (
+    id INTEGER,
+    name VARCHAR(200),
+    user_id INTEGER,
     PRIMARY KEY (id)
 );
