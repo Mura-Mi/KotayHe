@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/guava-13.0.1.jar" sourcepath="/Applications/eclipse/lib/guava-13.0.1.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/hibernate-commons-annotations-4.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/hibernate-core-4.1.8.Final.jar" sourcepath="/Users/mura_mi/Downloads/hibernate-release-4.1.8.Final/project/hibernate-core/src"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/javassist-3.15.0-GA.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/commons-lang3-3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/commons-lang3-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/commons-lang3-3.1-tests.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/commons-lang3-3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/ant-contrib.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/c3p0-0.9.1-pre6.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/c3p0-0.9.1-pre6.src.zip"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/jboss-common-jdbc-wrapper-src.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/jboss-common-jdbc-wrapper.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse/lib/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
