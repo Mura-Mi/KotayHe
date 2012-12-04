@@ -13,26 +13,28 @@ import com.google.common.collect.Sets;
  * @author murakamitakuya
  * 
  */
+@Deprecated
 public class IncomeRecordClassification extends RecordClassification {
-	private static final Set<IncomeRecordClassification> VALUES = Sets
-			.newHashSet();
+    private static final Set<IncomeRecordClassification> VALUES = Sets
+	    .newHashSet();
 
-	/**
-	 * @param name
-	 */
-	private IncomeRecordClassification(String name) {
-		super(name);
-	}
+    /**
+     * @param name
+     */
+    private IncomeRecordClassification(String name) {
+	super(name);
+    }
 
-	public static IncomeRecordClassification valueOf(String name) {
-		for(IncomeRecordClassification cl:VALUES){
-			if(ObjectUtils.equals(name, cl.getName())){
-				return cl;
-			}
-		}
-		IncomeRecordClassification newClassification = new IncomeRecordClassification(name);
-		VALUES.add(newClassification);
-		return newClassification;
+    public static IncomeRecordClassification valueOf(String name) {
+	for (IncomeRecordClassification cl : VALUES) {
+	    if (ObjectUtils.equals(name, cl.getName())) {
+		return cl;
+	    }
 	}
+	IncomeRecordClassification newClassification = new IncomeRecordClassification(
+		name);
+	VALUES.add(newClassification);
+	return newClassification;
+    }
 
 }

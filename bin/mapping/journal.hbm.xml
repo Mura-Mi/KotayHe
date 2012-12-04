@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="entity">
+    <class name="entity.Journal" table="JOURNAL" lazy="false">
+        <id name="id" type="long" access="field">
+            <column name="id" sql-type="INTEGER" not-null="true"/>
+        </id>
+        <property name="name" type="string"/>
+        <property name="userId" type="long" column="user_id"/>
+        <joined-subclass name="entity.BankJournal" table="BANK_JOURNAL">
+            <key column="id"/>
+            <property name="bankName" column="bank_name"/>
+        </joined-subclass>
+        <joined-subclass name="entity.ActualJournal" table="ACTUAL_JOURNAL">
+            <key column="id"/>
+        </joined-subclass>
+    
+    </class>
+    
+
+</hibernate-mapping>

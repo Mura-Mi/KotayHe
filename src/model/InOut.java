@@ -3,11 +3,13 @@
  */
 package model;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 /**
  * @author murakamitakuya
  * 
  */
-public enum InOut  {
+public enum InOut {
 	/**
 	 * Income(0)
 	 */
@@ -22,17 +24,17 @@ public enum InOut  {
 	private InOut(String dbValue) {
 		this.dbValue = dbValue;
 	}
-	
-	public static InOut getByDBValue(String i){
-		for(InOut e:values()){
-			if(i == e.getDBValue()){
+
+	public static InOut getByDBValue(String i) {
+		for (InOut e : values()) {
+			if (ObjectUtils.equals(i, e.getDBValue())) {
 				return e;
 			}
 		}
-		throw new IllegalArgumentException("input must be \"i\" or \"o\".");
+		return null;
 	}
-	
-	public String getDBValue(){
+
+	public String getDBValue() {
 		return this.dbValue;
 	}
 }

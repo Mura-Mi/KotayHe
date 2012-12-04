@@ -23,11 +23,14 @@ public class LDate implements Serializable, Cloneable {
 	}
 
 	public static LDate decode(String value) {
+		if (value == null) {
+			return null;
+		}
 		if (value.length() != 8) {
 			throw new IllegalArgumentException("the length is illegal: "
 					+ value.length());
 		}
-		
+
 		int year;
 		int month;
 		int day;
@@ -139,7 +142,7 @@ public class LDate implements Serializable, Cloneable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return encode();
@@ -149,8 +152,8 @@ public class LDate implements Serializable, Cloneable {
 	protected Object clone() throws CloneNotSupportedException {
 		return new LDate(year, month, day);
 	}
-	
-	public LDate getClone(){
+
+	public LDate getClone() {
 		try {
 			return (LDate) this.clone();
 		} catch (CloneNotSupportedException e) {

@@ -3,19 +3,25 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="entity">
-    <class name="dao.row.CashFlowDBRow" table="CASH_FLOW" lazy="false">
-        <id name="id" type="long" unsaved-value="null">
+    <class name="entity.CashFlow" table="CASH_FLOW" lazy="false">
+        <id name="id" type="long" access="field">
             <column name="id" sql-type="INTEGER" not-null="true"/>
-            <generator class="assigned"/>
         </id>
         <property name="amount"/>
-        <property name="inOut" type="string">
+        <property name="inOut" type="hibernate.InOutType">
             <column name="in_out"/>
         </property>
-        <property name="date" type="date"/>
+        <property name="date" type="hibernate.LDateType"/>
         <property name="categoryId" type="long"/>
         <property name="description" type="string"/>
         <property name="journalId" type="long"/>
+        <joined-subclass name="entity.BankCashFlow" table="BANK_CASH_FLOW">
+            <key column="id"/>
+            <property name="bankName" column="bank_name"/>
+        </joined-subclass>
+        <joined-subclass name="entity.ActualCashFlow" table="ACTUAL_CASH_FLOW">
+            <key column="id"/>
+        </joined-subclass>
     
     </class>
     

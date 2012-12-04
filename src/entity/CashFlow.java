@@ -7,8 +7,8 @@ import entity.base.CashFlowBase;
 
 /**
  * @author murakamitakuya
- *
+ * 
  */
-public class CashFlow extends CashFlowBase{
+public abstract class CashFlow extends CashFlowBase {
 
 }

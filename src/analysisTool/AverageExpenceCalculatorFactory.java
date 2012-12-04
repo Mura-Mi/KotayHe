@@ -6,15 +6,11 @@ package analysisTool;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.hibernate.service.spi.InjectService;
-
-import entity.CashFlow;
-
-import service.CashFlowService;
-
 import model.DecimalModel;
 import model.LDate;
 import model.Period;
+import service.CashFlowService;
+import entity.CashFlow;
 
 /**
  * @author murakamitakuya
@@ -79,6 +75,7 @@ public class AverageExpenceCalculatorFactory {
 			return decimalModel.getValue();
 		}
 
+		@SuppressWarnings("unused")
 		private BigDecimal aggregateOutgo() {
 			return null;
 		}

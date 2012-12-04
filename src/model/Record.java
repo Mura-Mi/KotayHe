@@ -4,75 +4,73 @@ import java.math.BigDecimal;
 
 /**
  * @author murakamitakuya
- *
- *TODO 現状では，銀行勘定のみに使っている．
+ * 
+ *         TODO 現状では，銀行勘定のみに使っている．
  */
+@Deprecated
 public abstract class Record {
-	private BigDecimal amount;
-	private String title;
-	private LDate date;
-	
-	/**
-	 * @param amount
-	 * @param title
-	 */
-	public Record() {
-	}
-	
+    private BigDecimal amount;
+    private String title;
+    private LDate date;
 
-	/**
-	 * @return
-	 */
-	
-	public BigDecimal getAmount() {
-		return amount;
-	}
+    /**
+     * @param amount
+     * @param title
+     */
+    public Record() {
+    }
 
-	/**
-	 * @param amount
-	 */
-	
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
-	}
-	
-	
-	public void setAmount(long amount){
-		this.amount = BigDecimal.valueOf(amount);
-	}
+    /**
+     * @return
+     */
 
-	/**
-	 * @return
-	 */
-	
-	public String getTitle() {
-		return title;
-	}
+    public BigDecimal getAmount() {
+	return amount;
+    }
 
-	/**
-	 * @param title
-	 */
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    /**
+     * @param amount
+     */
 
+    public void setAmount(BigDecimal amount) {
+	this.amount = amount;
+    }
 
-	/**
-	 * @return date
-	 */
-	
-	public LDate getDate() {
-		return date;
-	}
+    public void setAmount(long amount) {
+	this.amount = BigDecimal.valueOf(amount);
+    }
 
+    /**
+     * @return
+     */
 
-	/**
-	 * @param date date
-	 */
-	
-	public void setDate(LDate date) {
-		this.date = date;
-	}
-	
+    public String getTitle() {
+	return title;
+    }
+
+    /**
+     * @param title
+     */
+
+    public void setTitle(String title) {
+	this.title = title;
+    }
+
+    /**
+     * @return date
+     */
+
+    public LDate getDate() {
+	return date;
+    }
+
+    /**
+     * @param date
+     *            date
+     */
+
+    public void setDate(LDate date) {
+	this.date = date;
+    }
+
 }

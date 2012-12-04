@@ -4,10 +4,11 @@
 package dao;
 
 import java.io.Serializable;
-import java.sql.Connection;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
@@ -18,50 +19,67 @@ import org.hibernate.service.ServiceRegistryBuilder;
  * @param <E>
  */
 public abstract class AbstractDao<E> {
-	private static final Connection CONNECTION = ConnectionSupplier
-			.getConnection();
 
-	protected static Session getSession() {
-		Configuration config = new Configuration().configure();
-		ServiceRegistry sr = new ServiceRegistryBuilder().applySettings(
-				config.getProperties()).buildServiceRegistry();
-		SessionFactory sessionFactory = new Configuration().configure()
-				.buildSessionFactory(sr);
+    private static final SessionFactory SESSION_FACTORY;
 
-		return sessionFactory.openSession();
+    static {
+
+	Configuration config = new Configuration().configure();
+	ServiceRegistry sr = new ServiceRegistryBuilder().applySettings(
+		config.getProperties()).buildServiceRegistry();
+	SESSION_FACTORY = new Configuration().configure().buildSessionFactory(
+		sr);
+    }
+
+    protected static Session getSession() {
+
+	return SESSION_FACTORY.openSession();
+    }
+
+    protected AbstractDao() {
+    }
+
+    /**
+     * returns the class type this dao deals.
+     * 
+     * @return the type of the class
+     */
+    protected abstract Class<E> getClassType();
+
+    /**
+     * Find the unique entity by using the primary key.
+     * 
+     * @param pk
+     *            primary key
+     * @return the unique entity. {@code null} when the entity was not found.
+     */
+    @SuppressWarnings("unchecked")
+    public E findByPrimaryKey(Serializable pk) {
+	Session session = getSession();
+
+	if (session == null) {
+	    return null;
 	}
 
-	/**
-	 * 1 = domain name
-	 * <p>
-	 * 2 = pk name
-	 * <p>
-	 * 3 = pk value
-	 */
-	@Deprecated
-	protected static final String findByPkQuery = "SELECT * FROM ? WHERE ? = ?";
-
-	protected AbstractDao() {
-
+	try {
+	    return (E) session.load(getClassType(), pk);
+	} catch (ObjectNotFoundException e) {
+	    return null;
+	} finally {
+	    session.close();
 	}
+    }
 
-	/**
-	 * get the connection
-	 * 
-	 * @return connection
-	 */
-	@Deprecated
-	protected Connection getConnection() {
-		return CONNECTION;
-	}
+    public void saveOrUpdate(E e) {
+	Session session = getSession();
+	Transaction transaction = session.beginTransaction();
 
-	/**
-	 * Find the unique entity by using the primary key.
-	 * 
-	 * @param pk
-	 *            primary key
-	 * @return the unique entity. {@code null} when the entity was not found.
-	 */
-	public abstract E findByPrimaryKey(Serializable pk);
+	// session.saveOrUpdate(e);
+	session.saveOrUpdate(e);
 
+	transaction.commit();
+
+	session.close();
+
+    }
 }

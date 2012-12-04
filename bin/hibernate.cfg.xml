@@ -9,7 +9,7 @@
             com.mysql.jdbc.Driver
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/kotayHe
+            jdbc:mysql://localhost/KotayHe
         </property>
         <property name="hibernate.connection.username">
             root
@@ -28,8 +28,10 @@
         </property>
      
         <!--Mapping files-->
-        <mapping resource="mapping/cashFlow.hbm.xml"/>
         <mapping resource="mapping/kotayHeUser.hbm.xml"/>
+        <mapping resource="mapping/cashFlow.hbm.xml"/>
+        <mapping resource="mapping/cashFlowCategory.hbm.xml"/>
+        <mapping resource="mapping/journal.hbm.xml"/>
     </session-factory>
     
 </hibernate-configuration>
