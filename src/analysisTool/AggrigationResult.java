@@ -4,157 +4,43 @@
 package analysisTool;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
 
-import model.IncomeRecord;
-import model.IncomeRecordClassification;
-import model.OutGoRecord;
-import model.OutGoRecordClassification;
-import model.Record;
-import model.RecordClassification;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import entity.CashFlow;
+import entity.CashFlowCategory;
 
 /**
- * @author murakamitakuya
+ * @author mura_mi
  * 
  */
-public class AggrigationResult {
-
-    @Deprecated
-    private Map<OutGoRecordClassification, List<OutGoRecord>> outgos;
-    @Deprecated
-    private Map<IncomeRecordClassification, List<IncomeRecord>> incomes;
-
-    public AggrigationResult() {
-	this.outgos = Maps.newHashMap();
-	this.incomes = Maps.newHashMap();
-    }
+public interface AggrigationResult {
 
     /**
-     * Add the record result
+     * add the cash flow.
      * 
-     * @param record
-     * @return {@code true} when the adding succeed.
+     * @param cashFlow
+     * @return
      */
-    @Deprecated
-    public boolean addRecord(Record record) {
-	if (record instanceof OutGoRecord) {
-	    putOutGoRecord((OutGoRecord) record);
-	} else if (record instanceof IncomeRecord) {
-	    putIncomeRecord((IncomeRecord) record);
-	} else {
-	    return false;
-	}
-	return true;
-    }
+    boolean addCashFlow(CashFlow cashFlow);
 
     /**
      * gets the amount of income.
      * 
      * @return amount
      */
-    public BigDecimal getIncomeAmount() {
-	BigDecimal result = BigDecimal.ZERO;
-	for (RecordClassification cl : incomes.keySet()) {
-	    result = result.add(getAmount(cl));
-	}
-
-	return result;
-    }
+    BigDecimal getIncomeAmount();
 
     /**
      * the amount of outgo.
      * 
      * @return amount
      */
-    @Deprecated
-    public BigDecimal getOutgoAmount() {
-	BigDecimal result = BigDecimal.ZERO;
-	for (RecordClassification cl : outgos.keySet()) {
-	    result = result.add(getAmount(cl));
-	}
-
-	return result;
-    }
+    BigDecimal getOutgoAmount();
 
     /**
-     * gets the amount of the classification
+     * gets the amount of the category.
      * 
-     * @param classification
-     *            classification
-     * @return the amount;
-     */
-    @Deprecated
-    public BigDecimal getAmount(RecordClassification classification) {
-	List<? extends Record> list = null;
-
-	if (classification instanceof IncomeRecordClassification) {
-	    list = incomes.get(classification);
-	} else if (classification instanceof OutGoRecordClassification) {
-	    list = outgos.get(classification);
-	} else {
-	    throw new IllegalArgumentException(
-		    "the classification argument is illegal.");
-	}
-
-	BigDecimal result = BigDecimal.ZERO;
-
-	for (Record r : list) {
-	    result = result.add(r.getAmount());
-	}
-
-	return result;
-    }
-
-    /**
+     * @param category
      * @return
      */
-    @Deprecated
-    public Map<RecordClassification, BigDecimal> getIncomeAmountByClassification() {
-	Map<RecordClassification, BigDecimal> result = Maps.newHashMap();
-	for (RecordClassification cl : incomes.keySet()) {
-	    result.put(cl, getAmount(cl));
-	}
-
-	return result;
-    }
-
-    /**
-     * @return
-     */
-    @Deprecated
-    public Map<RecordClassification, BigDecimal> getOutgoAmountByClassification() {
-	Map<RecordClassification, BigDecimal> result = Maps.newHashMap();
-	for (RecordClassification cl : outgos.keySet()) {
-	    result.put(cl, getAmount(cl));
-	}
-
-	return result;
-    }
-
-    /**
-     * @param record
-     */
-    private void putIncomeRecord(IncomeRecord record) {
-	if (incomes.keySet().contains(record.getClassification())) {
-	    incomes.get(record.getClassification()).add(record);
-	} else {
-	    incomes.put(record.getClassification(), Lists.newArrayList(record));
-	}
-    }
-
-    /**
-     * @param record
-     */
-    private void putOutGoRecord(OutGoRecord record) {
-	if (outgos.keySet().contains(record.getClassification())) {
-	    outgos.get(record.getClassification()).add(record);
-	} else {
-	    outgos.put(record.getClassification(), Lists.newArrayList(record));
-	}
-    }
-
+    public BigDecimal getCashFlowAmount(CashFlowCategory category);
 }

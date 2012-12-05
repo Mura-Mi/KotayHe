@@ -8,11 +8,11 @@ package entity.base;
  * 
  */
 public class CashFlowCategoryBase {
-    private long id;
+    private Long id;
     private String description;
-    private long parent;
+    private Long parent;
 
-    public long getId() {
+    public Long getId() {
 	return id;
     }
 
@@ -20,7 +20,7 @@ public class CashFlowCategoryBase {
 	this.id = id;
     }
 
-    public long getParent() {
+    public Long getParent() {
 	return parent;
     }
 
