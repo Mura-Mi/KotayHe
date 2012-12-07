@@ -5,7 +5,7 @@ package analysisTool.nolongeruse;
 
 import java.util.List;
 
-import analysisTool.AggrigationResult;
+import analysisTool.aggregationresult.AggrigationResult;
 
 import model.Record;
 

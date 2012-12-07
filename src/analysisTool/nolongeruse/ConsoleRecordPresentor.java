@@ -3,7 +3,7 @@
  */
 package analysisTool.nolongeruse;
 
-import analysisTool.AggrigationResult;
+import analysisTool.aggregationresult.AggrigationResult;
 
 /**
  * @author murakamitakuya TODO String#Format を使う．

@@ -11,7 +11,7 @@ import model.Period;
 import model.Record;
 import model.YearMonth;
 import utils.BusinessDayCalculator;
-import analysisTool.AggrigationResult;
+import analysisTool.aggregationresult.AggrigationResult;
 
 /**
  * @author murakamitakuya
