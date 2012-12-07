@@ -60,7 +60,7 @@ public class AverageExpenceCalculatorFactory {
 		 * @see analysisTool.AverageExpenceCalculator#getDailyBudget()
 		 */
 		@Override
-		public BigDecimal getDailyBudget() {
+		public BigDecimal getDailyBudget(Period period) {
 			int dayCount = to.getDaysCount(from);
 			
 			return aggregateIncome().divide(BigDecimal.valueOf(dayCount));
