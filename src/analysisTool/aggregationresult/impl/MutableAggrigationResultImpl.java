@@ -9,7 +9,7 @@ import java.util.Map;
 import model.DecimalModel;
 import model.InOut;
 
-import analysisTool.aggregationresult.MutableAggrigationResult;
+import aggregationresult.MutableAggrigationResult;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
