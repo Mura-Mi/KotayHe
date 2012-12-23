@@ -15,7 +15,6 @@
             root
         </property>
         <property name="hibernate.connection.password">
-            harari0027
         </property>
         <property name="hibernate.connection.pool_size">
             3
