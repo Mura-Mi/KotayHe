@@ -25,6 +25,9 @@
         <property name="hibernate.show_sql">
             true
         </property>
+        <property name="javax.persistence.validation.mode">
+            none
+        </property>
      
         <!--Mapping files-->
         <mapping resource="mapping/kotayHeUser.hbm.xml"/>
